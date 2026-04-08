@@ -1,5 +1,5 @@
 pyppeteer
 httpx[http2]
-pyrogram
+git+https://github.com/hydrogram/hydrogram
 tgcrypto
 aiofiles

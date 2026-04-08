@@ -6,19 +6,18 @@ import json
 import pyppeteer
 import httpx
 import aiofiles
-import pyrogram
-import pyrogram.types
+import hydrogram as pyrogram
 
 MAX_REFRESH_TIME = 60 * 1
-EXTENSIONS_INDEX_URL = "https://raw.githubusercontent.com/tachiyomiorg/tachiyomi-extensions/repo/index.min.json"
+EXTENSIONS_INDEX_URL = "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
 
 ETAG_FILE = os.path.join(os.getcwd(), "etag.txt")
 EXTENSIONS_FILE = os.path.join(os.getcwd(), "extensions.json")
 
-REPOSITORY_URL = "https://github.com/tachiyomiorg/tachiyomi-extensions"
+REPOSITORY_URL = "https://github.com/keiyoushi/extensions-source"
 REPOSITORY_DIRECTORY = os.path.join(os.getcwd(), "submodules/tachiyomi-extensions")
 
-CHAT_ID = -1001988493033
+CHAT_ID = "@NikAnimes"
 
 class Status(enum.Enum):
 	STATUS_EXTENSION_REMOVED = 1
@@ -125,6 +124,8 @@ async def main():
 	
 	async with httpx.AsyncClient(http2 = True) as client:
 		while True:
+			print("- Fetching data from %s" % (EXTENSIONS_INDEX_URL))
+			
 			response = await client.get(
 				url = EXTENSIONS_INDEX_URL,
 				headers = headers
