@@ -192,7 +192,7 @@ async def main():
 					"added_extensions": added_extensions,
 					"removed_extensions": removed_extensions
 				}
-				
+				print(tree)
 				for key in tree.keys():
 					if key == "added_extensions":
 						status = Status.STATUS_EXTENSION_ADDED
